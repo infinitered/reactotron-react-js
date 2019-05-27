@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@types/react": "16.8.18",
-    "reactotron-core-client": "2.7.3",
+    "reactotron-core-client": "2.7.4",
     "stacktrace-js": "2.0.0"
   },
   "devDependencies": {
