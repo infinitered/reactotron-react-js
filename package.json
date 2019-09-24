@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "reactotron-core-client": "2.8.5",
-    "stacktrace-js": "2.0.0"
+    "stacktrace-js": "2.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.5.4",
