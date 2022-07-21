@@ -25,33 +25,33 @@ function getNavigatorProperty(name) {
   return window.navigator[name]
 }
 
-let DEFAULTS = {};
+let DEFAULTS = {
+  createSocket: path => new WebSocket(path), // eslint-disable-line
+  host: "localhost",
+  port: 9090,
+  name: "React JS App",
+  client: {},
+  getClientId: () => {
+    return Promise.resolve(localStorage.getItem(REACTOTRON_ASYNC_CLIENT_ID))
+  },
+  setClientId: (clientId: any) => {
+    localStorage.setItem(REACTOTRON_ASYNC_CLIENT_ID, clientId)
+    return Promise.resolve()
+  },
+};
 
 if (isBrowser()) {
-  DEFAULTS = {
-    createSocket: path => new WebSocket(path), // eslint-disable-line
-    host: "localhost",
-    port: 9090,
-    name: "React JS App",
-    client: {
-      reactotronLibraryName: "reactotron-react-js",
-      reactotronLibraryVersion: "REACTOTRON_REACT_JS_VERSION",
-      platform: "browser",
-      platformVersion: getNavigatorProperty("platform"),
-      userAgent: getNavigatorProperty("userAgent"),
-      screenWidth: (screen && screen.width) || undefined,
-      screenHeight: (screen && screen.height) || undefined,
-      screenScale: (window && window.devicePixelRatio) || 1,
-      windowWidth: (window && window.innerWidth) || undefined,
-      windowHeight: (window && window.innerHeight) || undefined,
-    },
-    getClientId: () => {
-      return Promise.resolve(localStorage.getItem(REACTOTRON_ASYNC_CLIENT_ID))
-    },
-    setClientId: (clientId: any) => {
-      localStorage.setItem(REACTOTRON_ASYNC_CLIENT_ID, clientId)
-      return Promise.resolve()
-    },
+  DEFAULTS.client = {
+    reactotronLibraryName: "reactotron-react-js",
+    reactotronLibraryVersion: "REACTOTRON_REACT_JS_VERSION",
+    platform: "browser",
+    platformVersion: getNavigatorProperty("platform"),
+    userAgent: getNavigatorProperty("userAgent"),
+    screenWidth: (screen && screen.width) || undefined,
+    screenHeight: (screen && screen.height) || undefined,
+    screenScale: (window && window.devicePixelRatio) || 1,
+    windowWidth: (window && window.innerWidth) || undefined,
+    windowHeight: (window && window.innerHeight) || undefined,
   }
 }
 
